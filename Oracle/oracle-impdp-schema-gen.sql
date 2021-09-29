@@ -17,6 +17,8 @@ accept LOG_FILE_NAME 	prompt "Log file name (def=&SOURCE_SCHEMA._v1.log): " 		de
 accept TABSPACE_PATH 	prompt "Oradata path (def=C:\ORA18\oradata): " 		default C:\ORA18\oradata
 accept DPPUMP_DIR_PATH 	prompt "Data pump dir path (def=C:\oraimp) : " 		default C:\oraimp
 
+accept USR_SYS_PSWD		prompt "Oracle SYSTEM password (def=oracle) : " 			default oracle
+
 ------------------------------------------------------------------------------------------------------------
 --  FOLLOWING SECTION ONWARD IS FIXED SCRIPTS, NOT RECOMMENDED TO CHANGE UNLESS YOU HAVE TUNING PREFERENCE
 ------------------------------------------------------------------------------------------------------------
@@ -51,7 +53,7 @@ grant UNLIMITED TABLESPACE TO &V_TRG_SCHEMA;
 
 HOST PAUSE
 
-host impdp system DIRECTORY=ms_dpump_dir DUMPFILE=&V_SRC_FILENAME REMAP_SCHEMA=&V_SRC_SCHEMA:&V_TRG_SCHEMA REMAP_TABLESPACE=&V_SRC_TABSPACE:&V_TRG_TABSPACE logfile=&LOG_FILE_NAME
+host impdp system/&USR_SYS_PSWD DIRECTORY=ms_dpump_dir DUMPFILE=&V_SRC_FILENAME REMAP_SCHEMA=&V_SRC_SCHEMA:&V_TRG_SCHEMA REMAP_TABLESPACE=&V_SRC_TABSPACE:&V_TRG_TABSPACE logfile=&LOG_FILE_NAME
 
 exit;
 
