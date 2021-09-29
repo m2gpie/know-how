@@ -1,7 +1,7 @@
 -- Version: 1.0
 --
 -- How to run: 
--- sqlplus system @"oracle-impdp-schema-gen.sql"
+-- sqlplus system @"oracle-impdp-schema.sql"
 -- 
 -- Remember to change TABSPACE_PATH, to get it run below query:
 -- select name from v$datafile
